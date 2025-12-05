@@ -1,71 +1,27 @@
 ---
 
-## @section Global parameters
-## Please, note that this will override the parameters, including dependencies, configured to use the global value
-##
 global:
-  ## @param global.timezone Timezone
   timezone: "Europe/Zurich"
 
-## @param nameOverride String to partially override common.names.name
-##
 nameOverride: ""
-## @param fullnameOverride String to fully override common.names.fullname
-##
 fullnameOverride: ""
 
-## @section Invenio common parameters
-
-## Invenio image version
-## ref: https://github.com/inveniosoftware/demo-inveniordm/pkgs/container/demo-inveniordm%2Fdemo-inveniordm
-## @param image.registry Invenio image registry
-## @param image.repository Invenio image repository
-## @param image.tag Invenio image tag (immutable tags are recommended). Defaults to .Chart.appVersion
-## @param image.digest Invenio image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
-## @param image.pullPolicy Invenio image pull policy
-## @param image.pullSecrets Invenio image pull secrets
+## Invenio image version for DL
 image:
-  registry: ghcr.io/inveniosoftware
-  repository: demo-inveniordm/demo-inveniordm
-  tag: ""
+  registry: ghcr.io
+  repository: inveniosoftware/demo-inveniordm
+  tag: "demo-inveniordm:13.0.0-post1"
   digest: ""
-  ## Specify a imagePullPolicy
-  ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
-  ## ref: https://kubernetes.io/docs/concepts/containers/images/#pre-pulled-images
-  ##
+
   pullPolicy: IfNotPresent
-  ## Optionally specify an array of imagePullSecrets.
-  ## Secrets must be manually created in the namespace.
-  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
-  ## e.g:
-  ## pullSecrets:
-  ##   - name: myRegistryKeySecretName
-  ##
   pullSecrets: []
 
 ## Invenio ingress parameters
 ## ref: https://kubernetes.io/docs/concepts/services-networking/ingress/
-##
 ingress:
-  ## @param ingress.enabled Enable ingress record generation for Invenio.
-  ##
   enabled: false
-  ## @param ingress.class IngressClass that will be be used to implement the Ingress (Kubernetes 1.18+)
-  ## This is supported in Kubernetes 1.18+ and required if you have more than one IngressClass marked as the default for your cluster .
-  ## ref: https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/
-  ##
   class: ""
-  ## @param ingress.annotations Additional annotations for the Ingress resource. To enable certificate autogeneration, place here your cert-manager annotations.
-  ## Use this parameter to set the required annotations for cert-manager, see
-  ## ref: https://cert-manager.io/docs/usage/ingress/#supported-annotations
-  ## e.g:
-  ## annotations:
-  ##   kubernetes.io/ingress.class: nginx
-  ##   cert-manager.io/cluster-issuer: cluster-issuer-name
-  ##
   annotations: {}
-  ## @param ingress.tlsSecretNameOverride Custom TLS secret name.
-  ##
   tlsSecretNameOverride: ""
 
 ## Openshift Route object
